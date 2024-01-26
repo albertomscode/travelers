@@ -1,35 +1,17 @@
-
 import { sql } from "@vercel/postgres";
-import DeletePostButton from "@/components/DeletePostButton";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-
 
 export default async function SinglePostPage({ params }) {
-    const posts = await sql `SELECT * FROM posts WHERE id = ${params.id}`;
-    console.log("post:", posts.rows)
+  const posts = await sql`SELECT * FROM posts WHERE id = ${params.id}`;
+  console.log("post:", posts.rows);
 
-    /*async function handleDeletePost() {
-        "use server";
-    console.log("Deleted clicked")
-
-    const posts = await sql `Delete FROM posts WHERE id = ${params.id}`;
-    redirect("/posts");
-    revalidatePath("/posts");
-      <button onClick={handleDeletePost}>Delete</button>
-    }*/
-
-    
-    return (
-        <div>
-          {posts.rows.map((post) => {
-              return (
-              <div key={post.id}>
-                <h2>{post.title}</h2>
-                <p>{post.content}</p>
-              </div>
-            );
-          })}
-        </div>        
-      );
-    }
+  return (
+    <div className="container mx-auto mt-8 p-6 bg-white shadow-md rounded-md">
+      {posts.rows.map((post) => (
+        <div key={post.id} className="text-center">
+          <h2 className="text-3xl font-bold mb-4 text-yellow-500">{post.title}</h2>
+          <p className="text-gray-700">{post.content}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
