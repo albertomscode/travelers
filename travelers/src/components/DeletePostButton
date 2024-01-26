@@ -1,0 +1,49 @@
+/*"use client";
+/*import { useFormStatus } from "react-dom";
+
+export default function DeletePostButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button disabled={pending} className={pending ? "disabled" : ""}>
+      {pending ? "Deleting your travel experience" : "Delete it!"}
+    </button>
+  );
+
+  <DeletePostButton />
+}*/
+
+/*
+import { sql } from "@vercel/postgres";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
+export default function DeletePost() {
+  async function handleDeletePost(formData) {
+    "use server";
+
+    // get the things from our formData object
+    const title = formData.delete("title");
+    const content = formData.delete("content");
+    const name = formData.delete("name");
+
+    // make our sql request
+    await sql`DELETE FROM posts (title, content) VALUES (${title}, ${content})`;
+    await sql`DELETE FROM categories (name) VALUES (${name})`;
+
+    // revalidate the path so the new item shows
+    revalidatePath("/posts");
+
+    // take me to the home page
+    redirect("/posts");
+  }
+
+  return (
+    <div>
+      <form action={handleDeletePost}>
+        <button onClick={handleDeletePost}>Delete post</button>
+      </form>
+    </div>
+  );
+}
+*/
