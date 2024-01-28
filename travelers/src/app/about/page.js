@@ -12,7 +12,7 @@ export default function AboutPage() {
       </p>
       <p className="text-gray-600">
         Join us on this exciting journey as we share our travel stories, tips, and
-        recommendations. Let's make every journey an unforgettable experience!
+        recommendations. Lets make every journey an unforgettable experience!
       </p>
     </div>
   );
