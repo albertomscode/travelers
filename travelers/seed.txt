@@ -1,0 +1,45 @@
+CREATE TABLE categories (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE posts (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT,
+  category_id INT REFERENCES categories(id)
+);
+
+CREATE TABLE comments (
+  id SERIAL PRIMARY KEY,
+  post_id INT NOT NULL,
+  user_name VARCHAR(100) NOT NULL,
+  comment_text TEXT NOT NULL,
+  post_id INT REFERENCES posts(id)
+
+);
+
+
+INSERT INTO categories (name) VALUES
+('Beaches'),
+('Mountains'),
+('Cities');
+
+
+
+INSERT INTO posts (title, content, category_id) VALUES
+('Tropical Beach Day', 'Experience a beautiful beach with crystal-clear waters and white sand.', 1),
+('Summit of the Mountain', 'Enjoy the majesty from the summit of a mountain.', 2),
+('City Exploration', 'Discover the charms of a city full of culture and life.', 3),
+('Sunny Day by the Shore', 'Relax and enjoy a sunny day on a paradise beach.', 1),
+('Hiking in the Mountains', 'Hike through trails and explore the natural beauty of the mountains.', 2),
+('City Nightlife', 'Immerse yourself in the nightlife and cultural diversity of a city.', 3);
+
+
+INSERT INTO comments (post_id, user_name, comment_text) VALUES
+(1, 'Alexandra Johnson', 'Malibu is my favorite beach destination!'),
+(2, 'Christopher Davis', 'Witnessing the sunrise at Everest is a surreal experience.'),
+(3, 'Emily Martinez', 'New York City is a city that never sleeps.'),
+(4, 'Michael Thompson', 'Waikiki Beach is paradise on Earth.'),
+(5, 'Olivia Harris', 'Hiking in the Rockies is a must for nature lovers.'),
+(6, 'Daniel Lee', 'Tokyos nightlife is unlike any other!');
